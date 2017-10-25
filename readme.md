@@ -10,6 +10,7 @@
 - Run php artisan key:generate
 - Run php artisan serve
 - Go to localhost:8000
+- En windows correr wampp o xampp
 
 
 
