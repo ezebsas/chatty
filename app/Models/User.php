@@ -37,12 +37,25 @@ class User extends Model implements AuthenticatableContract{
 		return $this->getName() ?: $this->username;
 	}
 	public function getFirstNameOrUserName(){
-		return $this->first_name() ?: $this->username;
+		return $this->first_name ?: $this->username;
 	}
 
-	public function getAvatarUrl()
-	{
+	public function getAvatarUrl() {
 		return "https://www.gravatar.com/avatar/".md5($this->email)."?d=mm&s=40";
 	}
 
+	public function friendsOfMine()
+	{
+		return $this->belongsToMany('Chatty\Models\User', 'friends', 'user_id', 'friend_id');
+	}
+
+	public function friendOf()
+	{
+		return $this->belongsToMany('Chatty\Models\User', 'friends', 'friend_id', 'user_id');
+	}
+
+	public function friends(){
+		return $this->friendsOfMine()->wherePivot('accepted', true)->get()->
+			merge($this->friendOf()->wherePivot('accepted', true)->get());
+	}
 }
