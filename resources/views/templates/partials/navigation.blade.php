@@ -6,8 +6,8 @@
     <div class="collapse navbar-collapse">
       @if (Auth::check())
         <ul class="nav navbar-nav">
-          <li class="nav-item"> <a class="nav-link" href="#">Timeline</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Friends</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('home') }}">Timeline</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('friend.index') }}">Friends</a> </li>
         </ul>
         <form class="navbar-form navbar-left" role="search" action="{{ route('search.results') }}">
           <div class="form-group">
