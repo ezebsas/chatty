@@ -19,4 +19,14 @@ class StatusController extends Controller{
 
 		return redirect()->route('home')->with('info', 'Status posted.');
 	}
+
+	public function postReply(Request $request, $statusId)
+	{
+		$this->validate($request, [
+			"reply-{$statusId}" => 'required | max:1000',
+		],[
+			'required' => 'The reply body is required'
+		]);
+		dd('all ok');
+	}
 }
