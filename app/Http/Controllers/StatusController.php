@@ -5,6 +5,7 @@ namespace Chatty\Http\Controllers;
 use Illuminate\Http\Request;
 use Chatty\Models\User;
 use Auth;
+use Chatty\Models\Status;
 
 class StatusController extends Controller{
 	public function postStatus(Request $request)
@@ -27,6 +28,23 @@ class StatusController extends Controller{
 		],[
 			'required' => 'The reply body is required'
 		]);
-		dd('all ok');
+		$status = Status::notReply()->find($statusId);
+
+		if(!$status){
+			return redirect()->route('home');
+		}
+
+		if(!Auth::user()->isFriendWith($status->user) && Auth::user()->id !== $status->user->id){
+			return redirect()->route('home');
+		}
+
+		$reply = Status::create([
+			'body' => $request->input("reply-{$statusId}"),
+		])->user()->associate(Auth::user());
+
+		$status->replies()->save($reply);
+
+		return redirect()->back();
+
 	}
 }
