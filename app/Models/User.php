@@ -76,7 +76,7 @@ class User extends Model implements AuthenticatableContract{
 	}
 
 	public function addFriend(User $user) {
-			$this->friendOf()->attach($user->id);
+			$this->friendOf()->attach($user->id, ['accepted' => false]);
 	}	
 
 	public function acceptFriendRequest(User $user){
