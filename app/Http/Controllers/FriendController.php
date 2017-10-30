@@ -16,4 +16,13 @@ class FriendController extends Controller{
 			->with('requests', $requests);
 	}
 
+	public function getAdd($username)
+	{
+		$user = User::where('username', $username)->first();
+
+		if(!$user){
+			return redirect()->route('home')->with('info', 'That user could not be found.');
+		}
+	}
+
 }
