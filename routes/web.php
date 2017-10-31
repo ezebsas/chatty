@@ -70,6 +70,10 @@ Route::post('profile/edit', [
 	'middleware' => ['auth'],
 ]);
 
+/*
+Friends
+*/
+
 Route::get('/friends', [
 	'uses' => 'FriendController@getIndex',
 	'as' => 'friend.index',
@@ -87,6 +91,16 @@ Route::get('/friends/accept/{username}', [
 	'as' => 'friend.accept',
 	'middleware' => ['auth'],
 ]);
+
+Route::post('/friends/delete/{username}', [
+	'uses' => 'FriendController@postDelete',
+	'as' => 'friend.delete',
+	'middleware' => ['auth'],
+]);
+
+/*
+Status
+*/
 
 Route::post('/status', [
 	'uses' => 'StatusController@postStatus',
