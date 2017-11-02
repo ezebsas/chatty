@@ -1,16 +1,14 @@
 ## Hacer esto para instalar la aplicacion
 
+- Hay que tener instalado composer en el sistema operativo
+- Hay que crear la base de datos chatty en postgres
 - Clone your project
 - Go to the folder application using cd
 - Run composer install on your cmd or terminal
 - Copy .env.example file to .env on root folder. You can type copy .env.example .env if using command prompt Windows or cp .env.example .env if using terminal Ubuntu
-- Open your .env file and change the database name (DB_DATABASE) to whatever you have, username (DB_USERNAME) and password (DB_PASSWORD) field correspond to your configuration.
-- By default, username is root and you can leave password field empty. (This is for Xampp)
-- By default, username is root and password is also root. (This is for Lamp)
+- Open your .env file and change the database name (chatty) to whatever you have, port 5432, username (postgres) and password (postgres2017) field correspond to your configuration.
 - Run php artisan key:generate
-- Run php artisan serve
-- Go to localhost:8000
-- En windows correr wampp o xampp
+- Run php artisan serve (no es necesario)
 
 
 
